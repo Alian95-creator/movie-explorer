@@ -70,3 +70,5 @@ fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`)
 searchInput.addEventListener("keyup",(e)=>{
 if(e.key==="Enter") searchMovie();
 });
+
+movieGrid.innerHTML="Loading...";
