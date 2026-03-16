@@ -66,3 +66,7 @@ fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`)
 .then(data=>displayMovies(data.results));
 
 }
+
+searchInput.addEventListener("keyup",(e)=>{
+if(e.key==="Enter") searchMovie();
+});
