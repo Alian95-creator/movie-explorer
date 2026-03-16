@@ -47,3 +47,5 @@ movieGrid.appendChild(card);
 });
 
 }
+
+getTrendingMovies();
