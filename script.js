@@ -97,6 +97,10 @@ function displayMovies(movies) {
 
     movieCard.classList.add("movie-card");
 
+    movieCard.addEventListener("click", () => {
+    openMovieModal(movie);
+});
+
     movieCard.innerHTML = `
     <div class="movie-poster">
 
@@ -193,3 +197,41 @@ return "red";
 }
 
 }
+
+function openMovieModal(movie){
+
+modal.style.display = "flex";
+
+modalBody.innerHTML = `
+
+<div class="modal-body">
+
+<img src="${IMG_URL + movie.poster_path}">
+
+<div>
+
+<h2>${movie.title}</h2>
+
+<p><strong>Rating:</strong> ⭐ ${movie.vote_average.toFixed(1)}</p>
+
+<p><strong>Release:</strong> ${movie.release_date}</p>
+
+<p>${movie.overview}</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+closeModal.addEventListener("click", () => {
+modal.style.display = "none";
+});
+
+window.addEventListener("click", (e)=>{
+if(e.target === modal){
+modal.style.display = "none";
+}
+});
