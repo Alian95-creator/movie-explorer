@@ -102,7 +102,8 @@ function displayMovies(movies) {
       
       <div class="movie-info">
         <h3>${movie.title}</h3>
-        <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+        <p class="rating ${getRatingColor(movie.vote_average)}">
+        ⭐ ${movie.vote_average.toFixed(1)}</p>
       </div>
     `;
 
@@ -158,3 +159,25 @@ modalBody.innerHTML = `
 closeModal.onclick = () => {
 modal.style.display="none";
 };
+
+function getRatingColor(vote){
+
+if(vote >= 7){
+
+return "green";
+
+}
+
+else if(vote >= 5){
+
+return "orange";
+
+}
+
+else{
+
+return "red";
+
+}
+
+}
