@@ -98,13 +98,25 @@ function displayMovies(movies) {
     movieCard.classList.add("movie-card");
 
     movieCard.innerHTML = `
-      <img src="${IMG_URL + movie.poster_path}" alt="${movie.title}">
-      
-      <div class="movie-info">
-        <h3>${movie.title}</h3>
-        <p class="rating ${getRatingColor(movie.vote_average)}">
-        ⭐ ${movie.vote_average.toFixed(1)}</p>
-      </div>
+    <div class="movie-poster">
+
+    <img src="${IMG_URL + movie.poster_path}" alt="${movie.title}">
+
+    <div class="movie-overlay">
+
+    <h3>${movie.title}</h3>
+
+    <p class="rating ${getRatingColor(movie.vote_average)}">
+    ⭐ ${movie.vote_average.toFixed(1)}
+    </p>
+
+    <p class="overview">
+    ${movie.overview ? movie.overview.substring(0,120)+"..." : "No description"}
+    </p>
+
+    </div>
+
+    </div>
     `;
 
     movieGrid.appendChild(movieCard);
