@@ -81,6 +81,10 @@ async function getTrendingMovies() {
 
   const data = await response.json();
 
+  setHeroMovie(data.results[0]);
+
+  displayMovies(data.results);
+
   displayMovies(data.results);
 
 }
@@ -235,3 +239,23 @@ if(e.target === modal){
 modal.style.display = "none";
 }
 });
+
+function setHeroMovie(movie){
+
+const hero=document.getElementById("hero");
+const heroTitle=document.getElementById("heroTitle");
+const heroOverview=document.getElementById("heroOverview");
+const heroRating=document.getElementById("heroRating");
+
+hero.style.backgroundImage=
+`url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+
+heroTitle.textContent=movie.title;
+
+heroOverview.textContent=
+movie.overview.substring(0,150)+"...";
+
+heroRating.textContent=
+"⭐ "+movie.vote_average.toFixed(1);
+
+}
