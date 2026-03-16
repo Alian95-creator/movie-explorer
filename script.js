@@ -72,3 +72,15 @@ if(e.key==="Enter") searchMovie();
 });
 
 movieGrid.innerHTML="Loading...";
+
+async function getTrendingMovies() {
+
+  const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
+
+  const response = await fetch(url);
+
+  const data = await response.json();
+
+  displayMovies(data.results);
+
+}
