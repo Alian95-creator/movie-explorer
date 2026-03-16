@@ -91,6 +91,8 @@ function displayMovies(movies) {
 
   movies.forEach(movie => {
 
+    if(!movie.poster_path) return;
+
     const movieCard = document.createElement("div");
 
     movieCard.classList.add("movie-card");
@@ -112,8 +114,6 @@ function displayMovies(movies) {
 
 getTrendingMovies();
 
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
 
 async function searchMovie() {
 
