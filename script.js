@@ -84,3 +84,28 @@ async function getTrendingMovies() {
   displayMovies(data.results);
 
 }
+
+function displayMovies(movies) {
+
+  movieGrid.innerHTML = "";
+
+  movies.forEach(movie => {
+
+    const movieCard = document.createElement("div");
+
+    movieCard.classList.add("movie-card");
+
+    movieCard.innerHTML = `
+      <img src="${IMG_URL + movie.poster_path}" alt="${movie.title}">
+      
+      <div class="movie-info">
+        <h3>${movie.title}</h3>
+        <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+      </div>
+    `;
+
+    movieGrid.appendChild(movieCard);
+
+  });
+
+}
