@@ -132,3 +132,29 @@ async function searchMovie() {
   displayMovies(data.results);
 
 }
+
+const modal = document.getElementById("movieModal");
+const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
+
+function showMovieDetail(movie){
+
+modal.style.display = "flex";
+
+modalBody.innerHTML = `
+<h2>${movie.title}</h2>
+
+<img src="${IMG_URL + movie.poster_path}">
+
+<p><strong>Rating:</strong> ${movie.vote_average}</p>
+
+<p><strong>Release:</strong> ${movie.release_date}</p>
+
+<p>${movie.overview}</p>
+`;
+
+}
+
+closeModal.onclick = () => {
+modal.style.display="none";
+};
