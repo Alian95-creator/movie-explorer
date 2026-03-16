@@ -111,3 +111,24 @@ function displayMovies(movies) {
 }
 
 getTrendingMovies();
+
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+
+async function searchMovie() {
+
+  const query = searchInput.value.trim();
+
+  if (!query) return;
+
+  movieGrid.innerHTML = "<h2>Searching...</h2>";
+
+  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`;
+
+  const response = await fetch(url);
+
+  const data = await response.json();
+
+  displayMovies(data.results);
+
+}
