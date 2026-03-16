@@ -49,3 +49,20 @@ movieGrid.appendChild(card);
 }
 
 getTrendingMovies();
+
+const searchInput=document.getElementById("searchInput");
+const searchBtn=document.getElementById("searchBtn");
+
+searchBtn.addEventListener("click",searchMovie);
+
+function searchMovie(){
+
+const query=searchInput.value;
+
+fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`)
+
+.then(res=>res.json())
+
+.then(data=>displayMovies(data.results));
+
+}
