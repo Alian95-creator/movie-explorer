@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { fetchTrendingMovies } from "../services/api";
 import MovieModal from "./MovieModal";
+import SkeletonCard from "./SkeletonCard";
+import { motion } from "framer-motion";
 
 function MovieGrid({ externalMovies }: any) {
   const [movies, setMovies] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (externalMovies && externalMovies.length > 0) {
       setMovies(externalMovies);
+      setLoading(false);
     } else {
-      fetchTrendingMovies().then(setMovies);
+      fetchTrendingMovies().then((data) => {
+        setMovies(data);
+        setLoading(false);
+      });
     }
   }, [externalMovies]);
 
@@ -20,30 +27,35 @@ function MovieGrid({ externalMovies }: any) {
         Trending Movies
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-        {movies.map((movie) => (
-          <div
-            key={movie.id}
-            onClick={() => setSelected(movie)}
-            className="cursor-pointer transform hover:scale-105 transition"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              className="rounded-lg w-full shadow-lg"
-            />
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {loading
+          ? Array(8)
+              .fill(0)
+              .map((_, i) => <SkeletonCard key={i} />)
+          : movies.map((movie) => (
+              <motion.div
+                key={movie.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelected(movie)}
+                className="cursor-pointer"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  className="rounded-lg w-full"
+                />
 
-            <div className="mt-2 flex justify-between items-center">
-              <h3 className="text-xs md:text-sm line-clamp-1">
-                {movie.title}
-              </h3>
+                <div className="mt-2 flex justify-between items-center">
+                  <h3 className="text-xs md:text-sm line-clamp-1">
+                    {movie.title}
+                  </h3>
 
-              {/* ⭐ RATING */}
-              <span className="text-yellow-400 text-xs">
-                ⭐ {movie.vote_average?.toFixed(1)}
-              </span>
-            </div>
-          </div>
-        ))}
+                  <span className="text-yellow-400 text-xs">
+                    ⭐ {movie.vote_average?.toFixed(1)}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
       </div>
 
       {selected && (

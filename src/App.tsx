@@ -14,7 +14,7 @@ function App() {
   };
 
   return (
-    <div className="bg-[#0b0b0b] text-white min-h-screen">
+    <div className="bg-[#0b0b0b] pt-16 text-white min-h-screen">
       <Navbar />
       <Hero onResults={setMovies} onExplore={scrollToTrending} />
       <MovieGrid externalMovies={movies} />

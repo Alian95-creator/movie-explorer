@@ -13,7 +13,7 @@ function Hero({ onResults, onExplore }: any) {
   return (
     <section
       id="home"
-      className="h-[60vh] md:h-[80vh] bg-cover bg-center flex items-end p-4 md:p-10"
+      className="min-h-[60vh] md:h-[80vh] bg-cover bg-center flex items-end p-4 md:p-10"
       style={{
         backgroundImage:
           "url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg')",
