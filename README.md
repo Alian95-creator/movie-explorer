@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# 🎬 Movie Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cinematic movie discovery web app built with modern frontend technologies.  
+Designed to deliver a **real product-like experience**, not just a simple UI project.
 
-Currently, two official plugins are available:
+🔗 Live Demo: https://alian95-creator.github.io/movie-explorer/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🎥 Cinematic Hero Section (Auto Slider)
+- 🔍 Real-time Movie Search
+- ❤️ Wishlist (Cloud Sync with Firebase)
+- 🔐 Google Authentication
+- ▶️ Trailer Modal (YouTube Integration)
+- 📺 Streaming Provider Info (Legal Watch Options)
+- ✨ Micro-interactions & Smooth Animations
+- 📱 Fully Responsive (Mobile-First)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧠 Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React + TypeScript
+- Tailwind CSS
+- Framer Motion
+- Firebase (Auth + Firestore)
+- TMDB API
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎯 Highlights
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This project focuses on:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Clean component-based architecture
+- Real-world feature implementation (auth, persistence, API integration)
+- UX-first approach with smooth animations and loading states
+- Production-ready deployment using GitHub Pages
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 📸 Preview
+
+> Modern UI with cinematic feel and interactive experience
+
+---
+
+## 🛠️ Installation
+
+```bash
+git clone https://github.com/Alian95-creator/movie-explorer.git
+cd movie-explorer
+npm install
+npm run dev
