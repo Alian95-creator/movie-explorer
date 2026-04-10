@@ -1,141 +1,73 @@
-# 🎬 Movie Explorer App
+# React + TypeScript + Vite
 
-A modern movie discovery web application that allows users to explore trending movies and search for films in real time.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-The application fetches movie data from the API of The Movie Database and renders it dynamically using Vanilla JavaScript.
+Currently, two official plugins are available:
 
-This project was built as part of my frontend development practice to improve skills in API integration, DOM manipulation, and dynamic UI rendering.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
----
+## React Compiler
 
-## 🚀 Live Demo
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-https://alian95-creator.github.io/movie-explorer/
+## Expanding the ESLint configuration
 
----
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## ✨ Features
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-🎬 **Trending Movies**
-Displays trending movies fetched from the TMDB API.
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-🔎 **Search Function**
-Users can search for movies by title.
-
-⭐ **Rating Indicator**
-Movie ratings are displayed with color indicators:
-
-* 🟢 High rating
-* 🟡 Medium rating
-* 🔴 Low rating
-
-🎥 **Movie Detail Modal**
-Clicking on a movie poster opens a modal with:
-
-* Poster
-* Movie title
-* Rating
-* Release date
-* Full movie overview
-
-🎨 **Netflix-style UI**
-Movie cards include hover effects and overlays for a modern interface.
-
----
-
-## 🛠 Tech Stack
-
-Frontend
-
-* HTML5
-* CSS3
-* JavaScript (Vanilla JS)
-
-API
-
-* TMDB API
-
----
-
-## 📡 API Endpoints Used
-
-Trending Movies
-
-```
-/trending/movie/week
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-Search Movies
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-/search/movie
-```
-
-Image Base URL
-
-```
-https://image.tmdb.org/t/p/w500
-```
-
----
-
-## 📂 Project Structure
-
-```
-movie-explorer
-│
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-```
-
----
-
-## ⚙️ How It Works
-
-1. The application fetches movie data from the TMDB API using the Fetch API.
-2. The response is converted to JSON.
-3. JavaScript dynamically creates movie cards and inserts them into the DOM.
-4. Users can search movies using the search input.
-5. Clicking on a movie card opens a modal displaying detailed information about the movie.
-
----
-
-## 💡 What I Learned
-
-While building this project I practiced:
-
-* Working with REST APIs
-* Handling asynchronous JavaScript using async/await
-* DOM manipulation
-* Dynamic UI rendering
-* Event handling
-* Building interactive UI components
-
----
-
-## 🔮 Future Improvements
-
-Possible improvements for the project:
-
-* Movie trailer integration
-* Genre filter
-* Pagination or load more movies
-* Responsive mobile improvements
-
----
-
-## 👨‍💻 Author
-
-Alifian
-Self-taught Frontend Developer from Indonesia
-
-GitHub
-https://github.com/Alian95-creator
-
----
-
-## 📜 License
-
-This project is built for educational and portfolio purposes.

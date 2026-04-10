@@ -1,61 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Movie Explorer</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-<body>
-
-<header>
-
-<h1>Movie Explorer</h1>
-
-<div class="search-box">
-<input id="searchInput" type="text" placeholder="Search movie...">
-<button id="searchBtn">Search</button>
-</div>
-
-</header>
-
-
-<main>
-
-<section id="hero">
-
-<div class="hero-content">
-
-<h1 id="heroTitle">Loading...</h1>
-
-<p id="heroOverview"></p>
-
-<p id="heroRating"></p>
-
-</div>
-
-</section>
-
-<div id="movieGrid" class="movie-grid"></div>
-
-</main>
-
-<div id="movieModal" class="modal">
-
-  <div class="modal-content">
-
-    <span id="closeModal" class="close">&times;</span>
-
-    <div id="modalBody"></div>
-
-  </div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movie-explorer</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
