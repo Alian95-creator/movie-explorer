@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import { fetchTrendingMovies } from "../services/api";
+import { fetchTopRatedMovies } from "../services/api";
 import MovieModal from "./MovieModal";
 
-function MovieGrid({ externalMovies }: any) {
+function TopRated() {
   const [movies, setMovies] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
 
   useEffect(() => {
-    if (externalMovies && externalMovies.length > 0) {
-      setMovies(externalMovies);
-    } else {
-      fetchTrendingMovies().then(setMovies);
-    }
-  }, [externalMovies]);
+    fetchTopRatedMovies().then(setMovies);
+  }, []);
 
   return (
-    <section id="trending" className="px-4 md:px-6 py-10">
+    <section id="toprated" className="px-4 md:px-6 py-10">
       <h2 className="text-xl md:text-2xl font-bold mb-6">
-        Trending Movies
+        Top Rated
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
@@ -29,15 +25,14 @@ function MovieGrid({ externalMovies }: any) {
           >
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              className="rounded-lg w-full shadow-lg"
+              className="rounded-lg w-full"
             />
 
-            <div className="mt-2 flex justify-between items-center">
+            <div className="mt-2 flex justify-between">
               <h3 className="text-xs md:text-sm line-clamp-1">
                 {movie.title}
               </h3>
 
-              {/* ⭐ RATING */}
               <span className="text-yellow-400 text-xs">
                 ⭐ {movie.vote_average?.toFixed(1)}
               </span>
@@ -53,4 +48,4 @@ function MovieGrid({ externalMovies }: any) {
   );
 }
 
-export default MovieGrid;
+export default TopRated;

@@ -2,17 +2,23 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MovieGrid from "./components/MovieGrid";
-import SearchBar from "./components/SearchBar";
+import TopRated from "./components/TopRated";
 
 function App() {
   const [movies, setMovies] = useState([]);
 
+  const scrollToTrending = () => {
+    document
+      .getElementById("trending")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="bg-[#0f0f0f] text-white min-h-screen">
+    <div className="bg-[#0b0b0b] text-white min-h-screen">
       <Navbar />
-      <SearchBar onResults={setMovies} />
-      <Hero />
+      <Hero onResults={setMovies} onExplore={scrollToTrending} />
       <MovieGrid externalMovies={movies} />
+      <TopRated />
     </div>
   );
 }
