@@ -1,45 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { auth, provider } from "../services/firebase";
+import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 
 function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      setOpen(false);
-    }
+  useEffect(() => {
+    onAuthStateChanged(auth, (u) => setUser(u));
+  }, []);
+
+  const login = async () => {
+    await signInWithPopup(auth, provider);
+  };
+
+  const logout = async () => {
+    await signOut(auth);
   };
 
   return (
-    <div className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md px-4 py-3">
-      <div className="flex justify-between items-center">
-        <h1
-          onClick={() => scrollTo("home")}
-          className="text-red-500 text-lg font-bold cursor-pointer"
-        >
-          MovieExplorer
-        </h1>
+    <div className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md px-4 py-3 flex justify-between items-center">
+      <h1 className="text-red-500 font-bold">MovieExplorer</h1>
 
-        {/* Desktop */}
-        <div className="hidden md:flex gap-6 text-sm">
-          <span onClick={() => scrollTo("home")} className="cursor-pointer hover:text-red-500">Home</span>
-          <span onClick={() => scrollTo("trending")} className="cursor-pointer hover:text-red-500">Trending</span>
-          <span onClick={() => scrollTo("toprated")} className="cursor-pointer hover:text-red-500">Top Rated</span>
+      {user ? (
+        <div className="flex items-center gap-3">
+          <img
+            src={user.photoURL}
+            className="w-8 h-8 rounded-full"
+          />
+          <button onClick={logout}>Logout</button>
         </div>
-
-        {/* Mobile */}
-        <button className="md:hidden text-xl" onClick={() => setOpen(!open)}>
-          ☰
+      ) : (
+        <button onClick={login} className="bg-white text-black px-3 py-1 rounded">
+          Login
         </button>
-      </div>
-
-      {open && (
-        <div className="mt-4 flex flex-col gap-3 md:hidden">
-          <span onClick={() => scrollTo("home")}>Home</span>
-          <span onClick={() => scrollTo("trending")}>Trending</span>
-          <span onClick={() => scrollTo("toprated")}>Top Rated</span>
-        </div>
       )}
     </div>
   );
