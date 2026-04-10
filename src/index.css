@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 🔥 GLOBAL BRANDING */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  @apply bg-[#0b0b0b] text-white;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* SCROLLBAR (bonus premium feel) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ef4444;
+  border-radius: 10px;
 }
