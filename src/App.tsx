@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="bg-[#0b0b0b] pt-16 text-white min-h-screen">
       <Navbar />
-      <Hero onResults={setMovies} onExplore={scrollToTrending} />
+      <Hero onResults={setMovies} />
       <MovieGrid externalMovies={movies} />
       <TopRated />
     </div>
