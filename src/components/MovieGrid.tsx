@@ -21,6 +21,15 @@ function MovieGrid({ externalMovies }: any) {
     }
   }, [externalMovies]);
 
+  if (!loading && movies.length === 0) {
+    return (
+      <div className="text-center py-20 text-gray-400">
+        <h2 className="text-xl mb-2">No movies found</h2>
+        <p className="text-sm">Try another keyword 🎬</p>
+      </div>
+    );
+  }
+
   return (
     <section id="trending" className="px-4 md:px-6 py-10">
       <h2 className="text-xl md:text-2xl font-bold mb-6">
@@ -41,11 +50,15 @@ function MovieGrid({ externalMovies }: any) {
                 className="cursor-pointer"
               >
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                      : "https://via.placeholder.com/500x750?text=No+Image"
+                  }
                   className="rounded-lg w-full"
                 />
 
-                <div className="mt-2 flex justify-between items-center">
+                <div className="mt-2 flex justify-between">
                   <h3 className="text-xs md:text-sm line-clamp-1">
                     {movie.title}
                   </h3>

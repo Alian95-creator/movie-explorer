@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MovieGrid from "./components/MovieGrid";
@@ -7,14 +7,12 @@ import TopRated from "./components/TopRated";
 function App() {
   const [movies, setMovies] = useState([]);
 
-  const scrollToTrending = () => {
-    document
-      .getElementById("trending")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => {
+    document.title = "Movie Explorer | Discover Films";
+  }, []);
 
   return (
-    <div className="bg-[#0b0b0b] pt-16 text-white min-h-screen">
+    <div className="bg-[#0b0b0b] text-white min-h-screen pt-16">
       <Navbar />
       <Hero onResults={setMovies} />
       <MovieGrid externalMovies={movies} />

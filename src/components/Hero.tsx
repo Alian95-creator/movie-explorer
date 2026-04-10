@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTrendingMovies } from "../services/api";
+import { fetchTrendingMovies, searchMovies } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Hero({ onResults }: any) {
@@ -9,12 +9,13 @@ function Hero({ onResults }: any) {
 
   useEffect(() => {
     fetchTrendingMovies().then((data) => {
-      setMovies(data.slice(0, 5)); // ambil 5 buat slider
+      setMovies(data.slice(0, 5));
     });
   }, []);
 
-  // 🔥 AUTO SLIDE
   useEffect(() => {
+    if (movies.length === 0) return;
+
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % movies.length);
     }, 4000);
@@ -24,17 +25,15 @@ function Hero({ onResults }: any) {
 
   const handleSearch = async () => {
     if (query.trim().length < 2) return;
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=382b2cfaaaa407d8b503d64cf9eaa0c3&query=${query}`
-    );
-    const data = await res.json();
-    onResults(data.results);
+    const results = await searchMovies(query);
+    onResults(results);
   };
 
   const current = movies[index];
 
   return (
-    <section className="relative min-h-[60vh] md:h-[80vh] overflow-hidden">
+    <section id="home"
+    className="relative min-h-[60vh] md:h-[80vh] overflow-hidden">
       <AnimatePresence>
         {current && (
           <motion.div
@@ -50,10 +49,8 @@ function Hero({ onResults }: any) {
         )}
       </AnimatePresence>
 
-      {/* overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* content */}
       <div className="relative z-10 flex items-end h-full p-4 md:p-10">
         <div className="max-w-xl w-full">
           <h1 className="text-2xl md:text-5xl font-bold mb-4">
@@ -64,7 +61,6 @@ function Hero({ onResults }: any) {
             {current?.overview}
           </p>
 
-          {/* 🔍 SEARCH */}
           <div className="flex gap-2">
             <input
               value={query}

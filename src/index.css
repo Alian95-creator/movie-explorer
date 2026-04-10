@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FIX MOBILE OVERFLOW */
-html, body, #root {
-  height: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
