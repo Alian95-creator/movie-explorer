@@ -32,7 +32,7 @@ function Hero({ onResults }: any) {
   const current = movies[index];
 
   return (
-    <section className="relative min-h-[60vh] md:h-[80vh] overflow-hidden">
+    <section className="relative h-[100dvh] md:h-[80vh] overflow-hidden">
       {/* BACKGROUND */}
       <AnimatePresence>
         {current && (
@@ -49,11 +49,11 @@ function Hero({ onResults }: any) {
         )}
       </AnimatePresence>
 
-      {/* OVERLAY GRADIENT (biar text kebaca tapi gak nutupin gambar) */}
+      {/* GRADIENT */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
 
-      {/* CONTENT DI BAWAH */}
-      <div className="relative z-10 flex items-end h-full p-4 md:p-10">
+      {/* CONTENT */}
+      <div className="relative z-10 flex flex-col justify-end h-full px-4 pb-10 md:p-10">
         <div className="w-full max-w-xl">
           <h1 className="text-xl md:text-5xl font-bold mb-3">
             {current?.title || "Loading..."}

@@ -115,9 +115,10 @@ function MovieGrid({ externalMovies }: any) {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
+                      e.preventDefault(); // 🔥 tambahan penting
                       toggleWishlist(movie);
                     }}
-                    className="absolute top-2 right-2 text-xl"
+                    className="absolute top-2 right-2 text-xl z-20"
                   >
                     {isWishlisted ? "❤️" : "🤍"}
                   </button>
