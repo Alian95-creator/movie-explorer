@@ -38,28 +38,31 @@ function MovieGrid({ externalMovies }: any) {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {loading
-          ? Array(8)
-              .fill(0)
-              .map((_, i) => <SkeletonCard key={i} />)
+          ? Array(8).fill(0).map((_, i) => <SkeletonCard key={i} />)
           : movies.map((movie) => (
               <motion.div
                 key={movie.id}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.06, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelected(movie)}
-                className="cursor-pointer"
+                className="relative cursor-pointer group"
               >
+                {/* IMAGE */}
                 <img
                   src={
                     movie.poster_path
                       ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                       : "https://via.placeholder.com/500x750?text=No+Image"
                   }
-                  className="rounded-lg w-full"
+                  className="rounded-lg w-full transition duration-300 group-hover:brightness-75"
                 />
 
-                <div className="mt-2 flex justify-between">
-                  <h3 className="text-xs md:text-sm line-clamp-1">
+                {/* GLOW */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300 shadow-[0_0_30px_rgba(255,0,0,0.4)]"></div>
+
+                {/* OVERLAY INFO */}
+                <div className="absolute bottom-0 left-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition duration-300">
+                  <h3 className="text-xs md:text-sm font-semibold">
                     {movie.title}
                   </h3>
 

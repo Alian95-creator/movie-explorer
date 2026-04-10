@@ -11,12 +11,14 @@ function MovieModal({ movie, onClose }: any) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 backdrop-blur-md bg-black/70 flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ scale: 0.8, opacity: 0, y: 50 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
         className="bg-[#1a1a1a] rounded-xl max-w-2xl w-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >

@@ -32,8 +32,8 @@ function Hero({ onResults }: any) {
   const current = movies[index];
 
   return (
-    <section id="home"
-    className="relative min-h-[60vh] md:h-[80vh] overflow-hidden">
+    <section className="relative min-h-[60vh] md:h-[80vh] overflow-hidden">
+      {/* BACKGROUND */}
       <AnimatePresence>
         {current && (
           <motion.div
@@ -49,30 +49,33 @@ function Hero({ onResults }: any) {
         )}
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* OVERLAY GRADIENT (biar text kebaca tapi gak nutupin gambar) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
 
+      {/* CONTENT DI BAWAH */}
       <div className="relative z-10 flex items-end h-full p-4 md:p-10">
-        <div className="max-w-xl w-full">
-          <h1 className="text-2xl md:text-5xl font-bold mb-4">
+        <div className="w-full max-w-xl">
+          <h1 className="text-xl md:text-5xl font-bold mb-3">
             {current?.title || "Loading..."}
           </h1>
 
-          <p className="text-gray-300 text-sm md:text-base mb-6 line-clamp-3">
+          <p className="text-gray-300 text-xs md:text-base mb-4 line-clamp-2 md:line-clamp-3">
             {current?.overview}
           </p>
 
+          {/* SEARCH */}
           <div className="flex gap-2">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder="Search movies..."
-              className="flex-1 p-3 rounded-lg bg-[#1a1a1a] text-white outline-none"
+              className="flex-1 p-2 md:p-3 rounded-lg bg-[#1a1a1a]/90 text-white outline-none text-sm md:text-base"
             />
 
             <button
               onClick={handleSearch}
-              className="bg-white text-black px-4 rounded-lg font-semibold"
+              className="bg-white text-black px-3 md:px-4 rounded-lg font-semibold text-sm md:text-base"
             >
               Search
             </button>
