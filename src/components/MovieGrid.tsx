@@ -1,22 +1,39 @@
-const dummyMovies = Array(8).fill({
-  title: "Movie Title",
-  image:
-    "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-});
+import { useEffect, useState } from "react";
+import { fetchTrendingMovies } from "../services/api";
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+}
 
 function MovieGrid() {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTrendingMovies().then((data) => {
+      setMovies(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <div className="p-6">Loading movies...</div>;
+  }
+
   return (
     <div className="px-6 py-10">
       <h2 className="text-2xl font-bold mb-6">Trending Movies</h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {dummyMovies.map((movie, index) => (
+        {movies.map((movie) => (
           <div
-            key={index}
+            key={movie.id}
             className="group cursor-pointer transform hover:scale-105 transition"
           >
             <img
-              src={movie.image}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               className="rounded-lg mb-2"
             />
 
